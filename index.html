@@ -3,68 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>yt1.lol // Cooking</title>
+    <title>yt1.lol // INITIALIZING</title>
     <style>
         :root {
-            --bg-color: #0a0a0a;
-            --text-main: #ffffff;
-            --text-muted: #888888;
-            --accent: #222222;
-            --glow: rgba(255, 255, 255, 0.05);
+            --bg: #030303;
+            --text: #ffffff;
+            --muted: #444444;
+            --accent: #ffffff;
+            --glitch-speed: 4s;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Courier New', Courier, monospace, system-ui;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--bg);
+            color: var(--text);
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 40px 20px;
+            padding: 30px;
             overflow: hidden;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
-            background-size: 40px 40px;
+            position: relative;
         }
 
-        /* Top Bar */
+        /* Ambient scanline effect */
+        body::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 10;
+            background-size: 100% 4px, 6px 100%;
+            pointer-events: none;
+        }
+
+        /* Subtle Background Canvas */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        header, main, footer {
+            position: relative;
+            z-index: 2;
+        }
+
         header {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 2px;
-            text-transform: uppercase;
         }
 
-        .status {
+        .status-container {
             display: flex;
             align-items: center;
-            gap: 8px;
-            color: var(--text-muted);
+            gap: 10px;
+            background: rgba(255,255,255,0.03);
+            padding: 6px 14px;
+            border: 1px solid #1a1a1a;
+            border-radius: 4px;
         }
 
-        .blink {
-            width: 8px;
-            height: 8px;
+        .pulse-dot {
+            width: 6px;
+            height: 6px;
             background-color: #fff;
             border-radius: 50%;
-            animation: pulse 2s infinite;
-            box-shadow: 0 0 10px #fff;
+            box-shadow: 0 0 8px #fff;
+            animation: pulse 1.5s infinite alternate;
         }
 
-        /* Main Content */
         main {
             text-align: center;
             display: flex;
@@ -74,106 +100,219 @@
             flex-grow: 1;
         }
 
-        .logo-container {
+        /* Cyber Glitch Logo Effect */
+        .glitch-wrapper {
             position: relative;
-            margin-bottom: 24px;
+            cursor: pointer;
         }
 
         h1 {
-            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-size: clamp(4rem, 12vw, 9rem);
             font-weight: 900;
-            letter-spacing: -2px;
-            line-height: 0.9;
+            letter-spacing: -4px;
             text-transform: lowercase;
-            background: linear-gradient(180deg, #fff 0%, #444 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #fff;
             position: relative;
-            z-index: 2;
+        }
+
+        h1::before, h1::after {
+            content: 'yt1.lol';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+        }
+
+        h1::before {
+            left: 2px;
+            text-shadow: -1px 0 #ff00c1;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        h1::after {
+            left: -2px;
+            text-shadow: -1px 0 #00fff0, 0 1px #00fff0;
+            clip: rect(85px, 450px, 140px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
         }
 
         .subtitle {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--text-muted);
-            letter-spacing: 6px;
+            font-size: 0.9rem;
+            color: #666;
+            letter-spacing: 8px;
             text-transform: uppercase;
-            font-weight: 300;
-            margin-top: 15px;
-            opacity: 0;
-            animation: fadeIn 1s ease-out 0.5s forwards;
+            margin-top: -10px;
+            margin-bottom: 30px;
         }
 
-        /* Progress Visualizer */
-        .loading-bar {
-            width: 180px;
-            height: 2px;
-            background: var(--accent);
-            margin-top: 40px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 2px;
+        /* Simulated Terminal Console */
+        .console-box {
+            width: 320px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #151515;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: left;
+            font-size: 0.75rem;
+            color: #555;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        .loading-bar::after {
-            content: '';
-            position: absolute;
-            left: -50%;
-            height: 100%;
-            width: 40%;
-            background: #fff;
-            animation: loading 1.8s infinite ease-in-out;
-            box-shadow: 0 0 10px #fff;
+        .console-line::before {
+            content: "> ";
+            color: #aaa;
         }
 
-        /* Footer */
+        .typing {
+            color: #aaa;
+            border-right: 2px solid #fff;
+            animation: blink-cursor 0.75s step-end infinite;
+            white-space: nowrap;
+        }
+
         footer {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             display: flex;
-            justify-content: center;
-            color: #333;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
+            justify-content: space-between;
+            color: #222;
+            font-size: 0.75rem;
         }
 
         /* Animations */
         @keyframes pulse {
-            0% { opacity: 0.3; }
-            50% { opacity: 1; }
-            100% { opacity: 0.3; }
+            0% { opacity: 0.2; }
+            100% { opacity: 1; }
         }
 
-        @keyframes loading {
-            0% { left: -40%; }
-            100% { left: 100%; }
+        @keyframes blink-cursor {
+            from, to { border-color: transparent }
+            50% { border-color: #fff; }
         }
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
+        @keyframes glitch-anim {
+            0% { clip: rect(15px, 9999px, 66px, 0); }
+            5% { clip: rect(85px, 9999px, 5px, 0); }
+            10% { clip: rect(34px, 9999px, 55px, 0); }
+            15% { clip: rect(124px, 9999px, 144px, 0); }
+            20% { clip: rect(13px, 9999px, 85px, 0); }
+            100% { clip: rect(13px, 9999px, 85px, 0); }
+        }
+
+        @keyframes glitch-anim2 {
+            0% { clip: rect(76px, 9999px, 116px, 0); }
+            11% { clip: rect(121px, 9999px, 25px, 0); }
+            22% { clip: rect(33px, 9999px, 110px, 0); }
+            30% { clip: rect(89px, 9999px, 15px, 0); }
+            100% { clip: rect(89px, 9999px, 15px, 0); }
         }
     </style>
 </head>
 <body>
 
+    <!-- Background matrix grid canvas -->
+    <canvas id="bg-canvas"></canvas>
+
     <header>
-        <div class="brand" style="font-weight: 700;">yt1 // sys</div>
-        <div class="status">
-            <div class="blink"></div>
-            <span>Under Construction</span>
+        <div class="root-dir" style="color: #666;">//root/yt1</div>
+        <div class="status-container">
+            <div class="pulse-dot"></div>
+            <span style="color: #aaa; font-size: 0.75rem;">DEV_MODE // ACTIVE</span>
         </div>
     </header>
 
     <main>
-        <div class="logo-container">
-            <h1>yt1.lol</h1>
+        <div class="glitch-wrapper">
+            <h1 data-text="yt1.lol">yt1.lol</h1>
         </div>
-        <p class="subtitle">Something heavy is cooking</p>
-        <div class="loading-bar"></div>
+        <p class="subtitle">UNDER CONSTRUCTION</p>
+        
+        <!-- Interactive Terminal Widget -->
+        <div class="console-box">
+            <div class="console-line">STAGING: ONLINE</div>
+            <div class="console-line">COMPILED: SUCCESS</div>
+            <div class="console-line"><span class="typing" id="terminal-text"></span></div>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 yt1.lol. All rights reserved.</p>
+        <div>EST. 2026</div>
+        <div>[ DISCONNECT ]</div>
     </footer>
 
+    <script>
+        // Matrix Background Dots Dynamic Animation
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const dots = [];
+        for(let i = 0; i < 60; i++) {
+            dots.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                speed: 0.2 + Math.random() * 0.5
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0,0,width,height);
+            ctx.fillStyle = '#ffffff';
+            dots.forEach(dot => {
+                ctx.beginPath();
+                ctx.arc(dot.x, dot.y, 1, 0, Math.PI * 2);
+                ctx.fill();
+                dot.y -= dot.speed;
+                if(dot.y < 0) {
+                    dot.y = height;
+                    dot.x = Math.random() * width;
+                }
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+
+        // Terminal text cycler
+        const words = ["rewriting_core...", "building_assets...", "injecting_style...", "cooking_something_wild..."];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const targetEl = document.getElementById('terminal-text');
+
+        function type() {
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                targetEl.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                targetEl.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 40 : 80;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                typeSpeed = 2000; // Pause at full word
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 400;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+        setTimeout(type, 1000);
+    </script>
 </body>
 </html>
