@@ -21,7 +21,7 @@
                 extend: {
                     colors: {
                         background: '#070708',
-                        primary: '#1e40af', // Sleek metallic blue accent
+                        primary: '#1e40af', /* Vyre metallic blue accent */
                         'primary-light': '#60a5fa',
                     },
                     fontFamily: {
@@ -36,9 +36,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-background text-white antialiased overflow-x-hidden selection:bg-primary/40 font-sans">
-
-    <!-- Global Subtle Toast for Interactive Triggers -->
-    <div id="toast-container" class="fixed top-6 left-4 right-4 z-[9999] pointer-events-none flex flex-col items-center gap-2"></div>
 
     <!-- Metallic Glow Radial Blurs -->
     <div class="absolute top-0 left-0 w-full h-screen -z-10 overflow-hidden pointer-events-none opacity-25 blur-[140px] contrast-[1.3]">
@@ -57,7 +54,7 @@
             
             <!-- Terminal Indicator Badge -->
             <div class="flex items-center gap-2 bg-white/[0.03] border border-white/10 text-white/60 font-mono text-xs rounded-full px-4 py-1.5 backdrop-blur-md">
-                <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
                 <span>root@yt1.lol:~# active</span>
             </div>
 
@@ -68,76 +65,77 @@
 
             <!-- Bio Description Taglines -->
             <p class="text-white/60 text-sm md:text-base leading-relaxed font-light tracking-wide max-w-sm">
-                Software developer, web automation engineer, and utility designer redefining backend frameworks and visual minimalism.
+                Software developer and toolmaker engineering high-performance web automations and minimal platforms.
             </p>
         </header>
 
-        <!-- MASTER REDIRECT HUBS & LINKS -->
+        <!-- DIRECT HUB PLATFORMS (Matches image_393602.png Layout exactly) -->
         <section class="mt-12 w-full max-w-md flex flex-col gap-3 relative z-10 animate-slide-up animation-delay-200">
             
             <div class="text-[10px] tracking-widest uppercase font-mono text-white/30 px-1 mb-1">Main Platforms</div>
 
-            <!-- Redirect Node 1: Vyre Store -->
+            <!-- Redirect Node 1: Store -->
             <a href="https://discord.gg/domains" target="_blank" class="group flex items-center justify-between bg-white/[0.02] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] p-4 rounded-xl backdrop-blur-xl transition-all duration-300">
                 <div class="flex items-center gap-4">
                     <div class="w-10 h-10 rounded-lg bg-white/[0.03] border border-white/5 flex items-center justify-center text-white/70 group-hover:text-primary-light transition-colors">
                         <i data-lucide="shopping-bag" class="w-5 h-5"></i>
                     </div>
                     <div class="flex flex-col">
-                        <span class="text-sm font-medium tracking-wide text-white/90">Vyre Store</span>
+                        <span class="text-sm font-medium tracking-wide text-white/90">Store</span>
                         <span class="text-xs text-white/40">Digital marketplace and automated fulfillment</span>
                     </div>
                 </div>
                 <i data-lucide="arrow-up-right" class="w-4 h-4 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"></i>
             </a>
 
-            <!-- Redirect Node 2: Discord Ecosystem Gateway -->
+            <!-- Redirect Node 2: Websites -->
             <a href="https://discord.gg/GWCv7nMqe2" target="_blank" class="group flex items-center justify-between bg-white/[0.02] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] p-4 rounded-xl backdrop-blur-xl transition-all duration-300">
                 <div class="flex items-center gap-4">
                     <div class="w-10 h-10 rounded-lg bg-white/[0.03] border border-white/5 flex items-center justify-center text-white/70 group-hover:text-primary-light transition-colors">
-                        <i data-lucide="message-square" class="w-5 h-5"></i>
+                        <i data-lucide="globe" class="w-5 h-5"></i>
                     </div>
                     <div class="flex flex-col">
-                        <span class="text-sm font-medium tracking-wide text-white/90">Discord Community Server</span>
-                        <span class="text-xs text-white/40">Connect, trade, or monitor engineering logs</span>
+                        <span class="text-sm font-medium tracking-wide text-white/90">Websites</span>
+                        <span class="text-xs text-white/40">Production web directories and active utility domains</span>
                     </div>
                 </div>
                 <i data-lucide="arrow-up-right" class="w-4 h-4 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"></i>
             </a>
 
-            <!-- Redirect Node 3: Software / Source Tracking -->
-            <a href="#" id="copy-discord" class="group flex items-center justify-between bg-white/[0.02] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] p-4 rounded-xl backdrop-blur-xl transition-all duration-300 cursor-pointer">
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-white/[0.03] border border-white/5 flex items-center justify-center text-white/70 group-hover:text-primary-light transition-colors">
-                        <i data-lucide="code-2" class="w-5 h-5"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-sm font-medium tracking-wide text-white/90">Custom Automation Frameworks</span>
-                        <span class="text-xs text-white/40">Selenium tooling, scraper APIs, and profile bots</span>
-                    </div>
-                </div>
-                <i data-lucide="copy" class="w-4 h-4 text-white/20 group-hover:text-white/60 transition-all"></i>
-            </a>
-
         </section>
 
-        <!-- EXPERIMENTAL / PRODUCTION TOOLS SHOWCASE BLOCK -->
+        <!-- EXTRA MINIMALIST ECOSYSTEM METRICS & BUILD STATUS -->
         <section class="mt-10 w-full max-w-md flex flex-col gap-3 relative z-10 animate-slide-up animation-delay-400">
             
-            <div class="text-[10px] tracking-widest uppercase font-mono text-white/30 px-1 mb-1">Active Architecture Stack</div>
+            <div class="text-[10px] tracking-widest uppercase font-mono text-white/30 px-1 mb-1">System Architecture</div>
 
+            <!-- Custom Tech Stack Spec Display -->
             <div class="grid grid-cols-2 gap-3">
-                <!-- Stack Cell 1 -->
                 <div class="p-4 bg-white/[0.01] border border-white/5 rounded-xl flex flex-col gap-2">
-                    <span class="font-mono text-xs text-primary-light font-medium">01 // Automation</span>
-                    <span class="text-sm text-white/80 font-medium">Selenium & APIs</span>
-                    <span class="text-xs text-white/40 leading-relaxed">High-frequency script pipelines for continuous account & web management updates.</span>
+                    <span class="font-mono text-[10px] text-primary-light tracking-wider uppercase">01 // Engineering</span>
+                    <span class="text-sm text-white/80 font-medium">Tools Maker</span>
+                    <span class="text-xs text-white/40 leading-relaxed">Designing clean backends, dynamic automation nodes, and structural APIs.</span>
                 </div>
-                <!-- Stack Cell 2 -->
                 <div class="p-4 bg-white/[0.01] border border-white/5 rounded-xl flex flex-col gap-2">
-                    <span class="font-mono text-xs text-primary-light font-medium">02 // Core</span>
-                    <span class="text-sm text-white/80 font-medium">Python & Node.js</span>
-                    <span class="text-xs text-white/40 leading-relaxed">Asynchronous operations, customized logging wrappers, and webhook infrastructure.</span>
+                    <span class="font-mono text-[10px] text-primary-light tracking-wider uppercase">02 // Environment</span>
+                    <span class="text-sm text-white/80 font-medium">Cyber-Minimalism</span>
+                    <span class="text-xs text-white/40 leading-relaxed">High-contrast layouts optimized strictly for rapid asset loading.</span>
+                </div>
+            </div>
+
+            <!-- Terminal Status Feed Widget -->
+            <div class="p-4 bg-white/[0.01] border border-white/5 rounded-xl font-mono text-[11px] text-white/50 flex flex-col gap-1.5">
+                <div class="flex justify-between">
+                    <span class="text-white/30">&gt; proxy_cluster_status</span>
+                    <span class="text-emerald-400">ONLINE</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-white/30">&gt; global_delivery_latency</span>
+                    <span class="text-white/70">14ms</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-white/30">&gt; server_rebrand_state</span>
+                    <span class="text-blue-400">VYRE_ACTIVE</span>
                 </div>
             </div>
 
@@ -150,50 +148,9 @@
 
     </main>
 
-    <!-- CORE FUNCTIONAL CONTROL SCRIPT -->
     <script>
-        // Initialize dynamic graphic context vector icons
+        // Init dynamic Lucide vector geometries
         lucide.createIcons();
-
-        // Interactive Event Handler for Quick-Copying/Inquiries
-        const copyTrigger = document.getElementById('copy-discord');
-        
-        copyTrigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            // Copies placeholder tag or discord contact node
-            navigator.clipboard.writeText('Vyre Store').then(() => {
-                triggerToastNotification("Designation key identity tag copied to hardware clipboard.");
-            }).catch(() => {
-                triggerToastNotification("Direct copying execution failed.", "error");
-            });
-        });
-
-        // Toast Engine Interface Setup
-        function triggerToastNotification(msg, status = "success") {
-            const toast = document.createElement('div');
-            toast.className = "pointer-events-auto bg-zinc-950/90 border border-white/10 backdrop-blur-xl px-4 py-2.5 rounded-xl text-xs font-mono tracking-wide text-white/80 shadow-2xl flex items-center gap-2 transform translate-y-[-10px] opacity-0 transition-all duration-300";
-            
-            const dot = document.createElement('span');
-            dot.className = `w-1.5 h-1.5 rounded-full ${status === 'success' ? 'bg-blue-400 shadow-[0_0_8px_#60a5fa]' : 'bg-rose-400 shadow-[0_0_8px_#f87171]'}`;
-            
-            toast.appendChild(dot);
-            const textNode = document.createElement('span');
-            textNode.textContent = msg;
-            toast.appendChild(textNode);
-            
-            const container = document.getElementById('toast-container');
-            container.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.classList.remove('translate-y-[-10px]', 'opacity-0');
-            }, 10);
-
-            setTimeout(() => {
-                toast.classList.add('translate-y-[-10px]', 'opacity-0');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
     </script>
 </body>
 </html>
