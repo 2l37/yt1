@@ -2,25 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>yt1</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Radio+Canada+Big:wght@400;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
 
 :root{
     --bg:#070708;
-    --card:rgba(255,255,255,.025);
-    --border:rgba(255,255,255,.05);
+    --card:rgba(255,255,255,.03);
+    --border:rgba(255,255,255,.06);
     --blue:#1e40af;
     --blue-light:#60a5fa;
 }
@@ -31,38 +29,50 @@
     box-sizing:border-box;
 }
 
+html,
+body{
+    width:100%;
+    min-height:100%;
+}
+
 body{
     background:var(--bg);
     color:white;
     font-family:'Figtree',sans-serif;
-    overflow:hidden;
-    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* GRAIN */
+
+.grain{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.03;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 
 /* GLOW */
 
 .glow{
-    position:absolute;
+    position:fixed;
     inset:0;
-    overflow:hidden;
     pointer-events:none;
+    overflow:hidden;
 }
 
 .glow::before{
     content:"";
     position:absolute;
     width:900px;
-    height:900px;
+    height:700px;
     left:50%;
-    top:-300px;
+    top:-250px;
     transform:translateX(-50%);
-    border-radius:999px;
-
     background:
     radial-gradient(circle,
     rgba(30,64,175,.55),
     transparent 70%);
-
     filter:blur(140px);
 }
 
@@ -71,138 +81,128 @@ body{
     position:absolute;
     width:500px;
     height:500px;
-    left:40%;
-    top:20%;
-
+    left:35%;
+    top:30%;
     background:
     radial-gradient(circle,
     rgba(96,165,250,.15),
     transparent 70%);
-
-    filter:blur(100px);
-}
-
-/* GRAIN */
-
-.grain{
-    position:fixed;
-    inset:0;
-    opacity:.03;
-    pointer-events:none;
-
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    filter:blur(120px);
 }
 
 main{
-    width:100%;
     min-height:100vh;
-
     display:flex;
     justify-content:center;
     align-items:center;
+    padding:40px 20px;
 }
 
 .profile{
     width:100%;
-    max-width:420px;
-
+    max-width:460px;
     display:flex;
     flex-direction:column;
     align-items:center;
+    animation:fadeUp .8s ease;
+}
 
-    text-align:center;
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 /* AVATAR */
 
 .avatar{
-    width:110px;
-    height:110px;
+    width:120px;
+    height:120px;
     border-radius:999px;
     object-fit:cover;
-
     border:1px solid var(--border);
-
-    background:#111;
-
     margin-bottom:18px;
 }
 
-/* NAME */
+/* USERNAME */
 
 .username{
     font-family:'Radio Canada Big',sans-serif;
-    font-size:42px;
-    font-weight:700;
+    font-size:46px;
+    line-height:1;
     letter-spacing:-2px;
 }
 
 .bio{
+    margin-top:10px;
     color:rgba(255,255,255,.45);
-    margin-top:8px;
     font-size:14px;
 }
 
 .location{
-    margin-top:10px;
-    color:rgba(255,255,255,.4);
-    font-size:12px;
+    margin-top:12px;
     font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:rgba(255,255,255,.35);
 }
 
-/* DISCORD CARD */
+/* CARD */
 
-.discord-card{
+.card{
     width:100%;
-    margin-top:24px;
+    margin-top:26px;
 
     background:var(--card);
+    backdrop-filter:blur(20px);
 
     border:1px solid var(--border);
 
-    backdrop-filter:blur(24px);
-
-    border-radius:20px;
-
+    border-radius:22px;
     padding:16px;
+}
 
+.discord-card{
     display:flex;
     align-items:center;
     gap:14px;
 }
 
 .discord-avatar{
-    width:60px;
-    height:60px;
+    width:64px;
+    height:64px;
     border-radius:16px;
     object-fit:cover;
 }
 
 .discord-info{
-    text-align:left;
     flex:1;
 }
 
 .discord-name{
-    font-weight:600;
     font-size:16px;
+    font-weight:600;
 }
 
 .discord-status{
-    color:rgba(255,255,255,.55);
     font-size:13px;
+    color:rgba(255,255,255,.55);
     margin-top:2px;
 }
 
 .discord-activity{
-    color:var(--blue-light);
     font-size:12px;
-    margin-top:5px;
+    margin-top:6px;
+    color:var(--blue-light);
 }
 
 .status-dot{
-    width:10px;
-    height:10px;
+    width:12px;
+    height:12px;
     border-radius:999px;
     background:#22c55e;
 }
@@ -210,39 +210,50 @@ main{
 /* SOCIALS */
 
 .socials{
-    margin-top:22px;
-
     display:flex;
-    align-items:center;
+    justify-content:center;
     gap:22px;
+    margin-top:24px;
 }
 
 .socials a{
-    color:white;
-    font-size:28px;
+    width:52px;
+    height:52px;
 
-    transition:.25s;
+    border-radius:14px;
+
+    background:rgba(255,255,255,.02);
+
+    border:1px solid rgba(255,255,255,.05);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-decoration:none;
+
+    color:white;
+    font-size:22px;
+
+    transition:.25s ease;
 }
 
 .socials a:hover{
     color:var(--blue-light);
-    transform:translateY(-3px);
+    border-color:rgba(96,165,250,.25);
+    transform:translateY(-4px);
 }
 
 .footer{
-    margin-top:30px;
-
+    margin-top:26px;
     font-family:'JetBrains Mono',monospace;
-    font-size:11px;
-
-    color:rgba(255,255,255,.3);
-
-    letter-spacing:1px;
+    font-size:10px;
+    letter-spacing:2px;
+    color:rgba(255,255,255,.25);
 }
 
 </style>
 </head>
-
 <body>
 
 <div class="glow"></div>
@@ -252,61 +263,84 @@ main{
 
 <div class="profile">
 
-<img src="https://cdn.discordapp.com/avatars/1168633780110635039/2a864dc25930af001ef6622cd998506f.webp?size=1024" class="avatar">
+<img
+class="avatar"
+src="https://cdn.discordapp.com/embed/avatars/0.png"
+id="mainAvatar">
 
 <h1 class="username">yt1</h1>
 
-<p class="bio">Run.</p>
+<div class="bio">
+Run.
+</div>
 
 <div class="location">
 📍 Germany
 </div>
 
-<!-- DISCORD -->
+<div class="card">
 
 <div class="discord-card">
 
 <img
+id="discordAvatar"
 class="discord-avatar"
-src="https://cdn.discordapp.com/avatars/1168633780110635039/2a864dc25930af001ef6622cd998506f.webp?size=1024">
+src="https://cdn.discordapp.com/embed/avatars/0.png">
 
 <div class="discord-info">
-<div class="discord-name">yt1</div>
 
-<div class="discord-status">
-Online
+<div id="discordName" class="discord-name">
+Loading...
 </div>
 
-<div class="discord-activity">
-Playing Roblox
-</div>
-</div>
-
-<div class="status-dot"></div>
-
+<div id="discordStatus" class="discord-status">
+Connecting...
 </div>
 
-<!-- SOCIALS -->
+<div id="discordActivity" class="discord-activity">
+Loading activity...
+</div>
+
+</div>
+
+<div id="statusDot" class="status-dot"></div>
+
+</div>
+
+</div>
+
+<!-- EDIT LINKS BELOW -->
 
 <div class="socials">
 
-<a href="#">
+<a href="https://discord.com/users/1168633780110635039" target="_blank">
 <i class="fab fa-discord"></i>
 </a>
 
-<a href="#">
+<a href="https://t.me/harm" target="_blank">
 <i class="fab fa-telegram"></i>
 </a>
 
-<a href="#">
+<a href="https://discord.gg/644" target="_blank">
 <i class="fas fa-cart-shopping"></i>
 </a>
 
-<a href="#">
-<i class="fas fa-cube"></i>
+<a href="https://www.roblox.com/users/3332646011/profile" target="_blank" class="social-btn">
+
+<svg
+width="24"
+height="24"
+viewBox="0 0 24 24"
+fill="currentColor"
+xmlns="http://www.w3.org/2000/svg">
+
+<path d="M5.164 0L0.16 18.928L18.836 24L23.84 5.072L5.164 0ZM13.911 15.354L8.692 13.937L10.091 8.647L15.311 10.065L13.911 15.354Z"/>
+
+</svg>
+
 </a>
 
-<a href="#">
+<a href="https://x.com/gpnp" target="_blank">
 <i class="fab fa-x-twitter"></i>
 </a>
 
@@ -319,6 +353,113 @@ YT1.LOL
 </div>
 
 </main>
+
+<script>
+
+const USER_ID = "1168633780110635039";
+
+async function updateDiscord(){
+
+    try{
+
+        const res = await fetch(
+            `https://rpcapi.ftp.sh/v1/users/${USER_ID}`
+        );
+
+        const json = await res.json();
+
+        if(!json.success) return;
+
+        const user = json.data.discord_user;
+
+        const avatar =
+            `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${user.avatar.startsWith("a_") ? "gif" : "png"}`;
+
+        document.getElementById("discordAvatar").src = avatar;
+        document.getElementById("mainAvatar").src = avatar;
+
+        document.getElementById("discordName").textContent =
+            user.username;
+
+        const status = json.data.discord_status;
+
+        document.getElementById("discordStatus")
+            .textContent =
+            status.charAt(0).toUpperCase() +
+            status.slice(1);
+
+        const dot =
+            document.getElementById("statusDot");
+
+        if(status === "online"){
+            dot.style.background = "#22c55e";
+        }
+
+        if(status === "idle"){
+            dot.style.background = "#facc15";
+        }
+
+        if(status === "dnd"){
+            dot.style.background = "#ef4444";
+        }
+
+        if(status === "offline"){
+            dot.style.background = "#6b7280";
+        }
+
+        let activity = "No activity";
+
+        if(json.data.activities &&
+           json.data.activities.length){
+
+            const a = json.data.activities.find(
+                x => x.type !== 4
+            );
+
+            if(a){
+
+                switch(a.type){
+
+                    case 0:
+                        activity = `Playing ${a.name}`;
+                        break;
+
+                    case 1:
+                        activity = `Streaming ${a.name}`;
+                        break;
+
+                    case 2:
+                        activity = `Listening to ${a.name}`;
+                        break;
+
+                    case 3:
+                        activity = `Watching ${a.name}`;
+                        break;
+
+                    default:
+                        activity = a.name;
+                }
+
+            }
+        }
+
+        document.getElementById("discordActivity")
+            .textContent = activity;
+
+    }catch(err){
+
+        document.getElementById("discordStatus")
+            .textContent = "RPC Offline";
+
+    }
+
+}
+
+updateDiscord();
+
+setInterval(updateDiscord,15000);
+
+</script>
 
 </body>
 </html>
